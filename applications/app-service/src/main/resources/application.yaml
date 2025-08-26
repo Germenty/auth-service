@@ -1,5 +1,6 @@
 server:
   port: 8080
+
 spring:
   application:
     name: "AuthService"
@@ -11,6 +12,7 @@ spring:
       path: "/h2"
   profiles:
     include: null
+
 management:
   endpoints:
     web:
@@ -20,5 +22,15 @@ management:
     health:
       probes:
         enabled: true
+
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
+
+# Swagger
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
