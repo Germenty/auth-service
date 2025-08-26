@@ -13,15 +13,48 @@ spring:
   profiles:
     include: null
 
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/user_management
+    username: postgres
+    password: postgres
+    pool:
+      enabled: true
+      initial-size: 10
+      max-size: 50
+      max-idle-time: 30m
+      validation-query: SELECT 1
+
+  webflux:
+    base-path: /api/v1
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+    date-format: yyyy-MM-dd
+
 management:
   endpoints:
     web:
       exposure:
-        include: "health,prometheus"
+        include: health,info,metrics,prometheus
   endpoint:
     health:
-      probes:
-        enabled: true
+      show-details: always
+  # metrics:
+  #   export:
+  #     prometheus:
+  #       # enabled: true
+
+logging:
+  level:
+    co.com.bancolombia: DEBUG
+    org.springframework.r2dbc: DEBUG
+    io.r2dbc.postgresql: DEBUG
+    reactor.netty: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
 
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"

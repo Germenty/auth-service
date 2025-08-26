@@ -1,0 +1,10 @@
+dependencies {
+    implementation 'io.projectreactor:reactor-core:3.6.0' // Para Mono y Flux
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+}
